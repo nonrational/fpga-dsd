@@ -1,11 +1,11 @@
-# Overview
+# Verilog Sources & Constraints
 
-- Verilog Source [`ledbtn_top.v`](ledbtn_top.v)
+- [`ledbtn_top.v`](cora-Z7-07S.srcs/sources_1/new/ledbtn_top.v)
   - Pressing `BTN0` cycles `LD0` through its BGR states.
   - LD0 displays the "debounce" status to allow for a single press to advance the color only one step.
-- Constraints [`cora-z7-07s.xdc`](cora-z7-07s.xdc)
-  - Maps hardware (pins, buttons, leds, switches, etc) to variables to be referenced in verilog modules.
-
+- [`cora-z7-07s.xdc`](cora-Z7-07S.srcs/constrs_1/new/cora-z7-07s.xdc)
+  - hardware-to-software pin-to-variable mapping
+  
 ### Notes
 ```
 LEDS[0] - led0_blue
