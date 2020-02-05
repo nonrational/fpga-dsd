@@ -16,3 +16,7 @@
 
 - [EECS151 Fall 2019](http://inst.eecs.berkeley.edu/~eecs151/fa19/)
 - [EECS151 FPGA Labs](https://github.com/EECS150/fpga_labs_fa19)
+
+## macOS Development
+
+![](assets/vivando-on-virtualbox-with-xforwarding-and-shared-folders.png)
