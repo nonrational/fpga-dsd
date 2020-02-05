@@ -1,6 +1,26 @@
-*.wdf
+# binary
+*.dcp
+*.pb
+*.rpx
+
+# legacy
 *.fst
+*.rst
 *.tb
 *.tbi
 *.vpd
-*.txt
+
+**/*webtalk*ml
+
+**/*.cache/wt/*.wdf
+
+**/*.runs/.jobs
+
+**/*.runs/**/runme*
+**/*.runs/**/rundef*
+**/*.runs/**/ISEWrap*
+**/*.runs/**/*.rpt
+**/*.runs/**/*.jou
+
+**/*.runs/synth*/.Xil
+**/*.runs/synth*/__synthesis_is_complete__
