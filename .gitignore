@@ -12,7 +12,7 @@
 
 **/*webtalk*ml
 
-**/*.cache/wt/*.wdf
+**/*.cache/
 
 **/*.runs/.jobs
 
@@ -24,3 +24,4 @@
 
 **/*.runs/synth*/.Xil
 **/*.runs/synth*/__synthesis_is_complete__
+
