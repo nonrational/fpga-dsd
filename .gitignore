@@ -10,18 +10,5 @@
 *.tbi
 *.vpd
 
-**/*webtalk*ml
-
 **/*.cache/
-
-**/*.runs/.jobs
-
-**/*.runs/**/runme*
-**/*.runs/**/rundef*
-**/*.runs/**/ISEWrap*
-**/*.runs/**/*.rpt
-**/*.runs/**/*.jou
-
-**/*.runs/synth*/.Xil
-**/*.runs/synth*/__synthesis_is_complete__
-
+**/*.runs/
