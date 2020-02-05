@@ -17,4 +17,4 @@ LEDS[5] - led1_red
 ```
 
 ### Demo
-![](https://i.ibb.co/XxvP42s/ezgif-com-optimize.gif)
+![](assets/ledbtn_demo.gif)
