@@ -1,3 +1,6 @@
 [submodule "fpga_labs_fa19"]
 	path = fpga_labs_fa19
 	url = https://github.com/EECS150/fpga_labs_fa19
+[submodule "Cora-Z7-07S-XADC"]
+	path = Cora-Z7-07S-XADC
+	url = https://github.com/Digilent/Cora-Z7-07S-XADC
