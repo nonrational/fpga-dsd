@@ -9,7 +9,7 @@ module structural_adder (
     wire [14:0] running_sum;
     wire [15:0] running_carry;
 
-    assign running_carry = 1'b0;
+    assign running_carry = 16'b0;
 
     genvar i;
 
