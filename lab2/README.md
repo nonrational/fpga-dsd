@@ -8,12 +8,12 @@
 
 A full adder is a circuit that satisfies a truth table, with 3 inputs and 2 outputs.
 
-So, how do we represent a truth table with two outputs? Karnaugh Maps. Also, KMaps allow us to derive a boolean function from a truth table.
+So, how do we represent a truth table with two outputs? Karnaugh Maps. Also, KMaps allow us to derive a boolean function from a truth table via Sum-Of-Product notation.
 
 [Introduction to K-Maps](https://www.youtube.com/watch?v=3vkMgTmieZI)
-[Full Adder](https://www.youtube.com/watch?v=F-2C59sTl6w)
 
-https://tams.informatik.uni-hamburg.de/research/software/tams-tools/kvd-editor.html
+[Full Adder](https://www.youtube.com/watch?v=F-2C59sTl6w)
+> (Note: He keeps saying hexidecimal but he means binary.)
 
 ### I/O
 
@@ -36,8 +36,21 @@ https://tams.informatik.uni-hamburg.de/research/software/tams-tools/kvd-editor.h
 | 0 | 0 |  1  |  0   |  1  |
 | 0 | 0 |  0  |  0   |  0  |
 
+### K-Map Sum
 
-## Links
+|    | !B!C | !BC | BC | B!C |
+|----|------|-----|----|-----|
+| !A | 0    | 1   | 0  | 1   |
+| A  | 1    | 0   | 1  | 0   |
 
-![https://www.sciencedirect.com/topics/computer-science/full-adder](foo)
-- [https://www.nandland.com/vhdl/modules/module-full-adder.html](https://www.nandland.com/vhdl/modules/module-full-adder.html)
+This K-Map produces no "nice" groups, so we have 4 groups of 1, which we express via SOP as
+
+`!A*!B*C + !A*B*!C + A!B!C + ABC = C(!A!B + AB) + !C(!AB+A!B) = C ⊗ A ⊗ B`
+
+`sum` is only 1 (or "high") when `Cin XOR A XOR B == 1`
+
+
+## Other Links
+
+- <https://www.sciencedirect.com/topics/computer-science/full-adder>
+- <https://www.nandland.com/vhdl/modules/module-full-adder.html>
