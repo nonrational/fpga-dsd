@@ -22,6 +22,7 @@ module structural_adder_tb ();
 
   initial
     begin
+      $display("%b == %b", s_RESULT, b_RESULT);
       #10
       $display("%b == %b", s_RESULT, b_RESULT);
       #10;
@@ -33,8 +34,8 @@ module structural_adder_tb ();
       r_ADD_2 = 14'b00000000000001;
       #10;
       $display("%b == %b", s_RESULT, b_RESULT);
-      r_ADD_1 = 14'b00000000000111; // 7
-      r_ADD_2 = 14'b00000000011111; // 31
+      r_ADD_1 = 14'b10000000000000; // 7
+      r_ADD_2 = 14'b11111111111111; // 31
       #10;
       $display("%b == %b", s_RESULT, b_RESULT);
     end

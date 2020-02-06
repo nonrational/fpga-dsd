@@ -1,20 +1,18 @@
-// width = 14
-
 module structural_adder (
     input [13:0] a,
     input [13:0] b,
     output [14:0] sum
 );
 
-    wire [14:0] summing;
-    wire [15:0] carrying;
+    wire [13:0] summing;
+    wire [14:0] carrying;
 
     assign carrying[0] = 1'b0;
 
     genvar i;
 
     generate
-        for (i = 0; i < 15 ; i = i + 1) begin:twobitadder
+        for (i = 0; i < 14 ; i = i + 1) begin:twobitadder
             full_adder genadder (
                 .a(a[i]),
                 .b(b[i]),
