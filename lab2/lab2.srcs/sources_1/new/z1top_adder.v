@@ -10,10 +10,9 @@ module z1top_adder (
   wire [14:0] structural_out, behavioral_out;
 
   wire test_fail;
-  assign test_fail = 0'b1;
 
-  assign LEDS[2] = test_fail; // light on = failure
-  assign LEDS[5] = test_fail; // light on = failure
+  assign LEDS[2] = ~test_fail;
+  assign LEDS[5] = ~test_fail;
 
   structural_adder structural_test_adder (
       .a(adder_operand1),
