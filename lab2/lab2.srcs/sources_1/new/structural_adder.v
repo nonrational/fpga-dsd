@@ -1,28 +1,29 @@
+// width = 14
+
 module structural_adder (
     input [13:0] a,
     input [13:0] b,
     output [14:0] sum
 );
 
+    wire [14:0] running_sum;
+    wire [15:0] running_carry;
+
+    assign running_carry = 1'b0;
+
     genvar i;
 
-    full_adder f0 (
-        .a(a[0]),
-        .b(b[0]),
-        .carry_in(0),
-        .sum(sum[0]),
-        .carry_out(sum[1])
-    );
-
     generate
-        for (i = 1; i <= 13 ; i = i + 1) begin:twobitadder
+        for (i = 0; i < 14 ; i = i + 1) begin:twobitadder
             full_adder genadder (
                 .a(a[i]),
                 .b(b[i]),
-                .carry_in(sum[i-1]),
-                .sum(sum[i]),
-                .carry_out(sum[i+1])
+                .carry_in(running_carry[i]),
+                .sum(running_sum[i]),
+                .carry_out(running_carry[i+1])
             );
         end
     endgenerate
+
+    assign sum = {running_carry[14], running_sum};
 endmodule
