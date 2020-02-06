@@ -1,6 +1,6 @@
 # Lab2 - Build a Structural 14-bit Adder
 
-- [ ] [`full_adder.v`](lab2.srcs/new/full_adder.v) - Fill in the logic to product the full adder output from the inputs.
+- [x] [`full_adder.v`](lab2.srcs/new/full_adder.v) - Fill in the logic to product the full adder output from the inputs.
 - [ ] [`structural_adder.v`](lab2.srcs/new/structural_adder.v) - Construct a ripple carry adder using the full adder cells you designed earlier and a 'for-generate loop'.
 - [x] How are we managing to input two 3-bit integers? Via a switch and two buttons
 
