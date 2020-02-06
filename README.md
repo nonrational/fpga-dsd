@@ -2,7 +2,9 @@
 
 ## Hardware
 
-[Cora Z7-07S](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/start) [Reference Manual](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/reference-manual)
+[Cora Z7-07S](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/start)
+
+[Reference Manual](https://reference.digilentinc.com/reference/programmable-logic/cora-z7/reference-manual)
 
 ## Software
 

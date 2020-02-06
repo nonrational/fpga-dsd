@@ -12,8 +12,7 @@ So, how do we represent a truth table with two outputs? Karnaugh Maps. Also, KMa
 
 [Introduction to K-Maps](https://www.youtube.com/watch?v=3vkMgTmieZI)
 
-[Full Adder](https://www.youtube.com/watch?v=F-2C59sTl6w)
-> (Note: He keeps saying hexidecimal but he means binary.)
+[Full Adder](https://www.youtube.com/watch?v=F-2C59sTl6w) (Note: He keeps saying hexidecimal but he means binary)
 
 ### I/O
 
@@ -58,6 +57,10 @@ This K-Map produces no "nice" groups, so we have 4 groups of 1, which we express
 This K-Map produces 3 groups, which we express as
 
 `Cout = AC + AB + BC`
+
+## Demo
+
+![Full Adder](assets/2bitadder2.mp4.gif)
 
 ## Other Links
 
