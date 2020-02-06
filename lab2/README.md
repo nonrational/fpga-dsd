@@ -27,14 +27,15 @@ So, how do we represent a truth table with two outputs? Karnaugh Maps. Also, KMa
 
 | A | B | Cin | Cout | Sum |
 |---|---|-----|------|-----|
-| 1 | 1 |  1  |  1   |  1  |
-| 1 | 1 |  0  |  1   |  0  |
-| 1 | 0 |  1  |  1   |  0  |
-| 1 | 0 |  0  |  0   |  1  |
-| 0 | 1 |  1  |  1   |  0  |
-| 0 | 1 |  0  |  0   |  1  |
-| 0 | 0 |  1  |  0   |  1  |
-| 0 | 0 |  0  |  0   |  0  |
+| 1 | 1 | 1   | 1    | 1   |
+| 1 | 1 | 0   | 1    | 0   |
+| 1 | 0 | 1   | 1    | 0   |
+| 1 | 0 | 0   | 0    | 1   |
+| 0 | 1 | 1   | 1    | 0   |
+| 0 | 1 | 0   | 0    | 1   |
+| 0 | 0 | 1   | 0    | 1   |
+| 0 | 0 | 0   | 0    | 0   |
+
 
 ### K-Map Sum
 
@@ -45,10 +46,18 @@ So, how do we represent a truth table with two outputs? Karnaugh Maps. Also, KMa
 
 This K-Map produces no "nice" groups, so we have 4 groups of 1, which we express via SOP as
 
-`!A*!B*C + !A*B*!C + A!B!C + ABC = C(!A!B + AB) + !C(!AB+A!B) = C ⊗ A ⊗ B`
+`sum = !A*!B*C + !A*B*!C + A!B!C + ABC = C(!A!B + AB) + !C(!AB+A!B) = C ⊗ A ⊗ B`
 
-`sum` is only 1 (or "high") when `Cin XOR A XOR B == 1`
+### K-Map Cout
 
+|    | !B!C | !BC | BC | B!C |
+|----|------|-----|----|-----|
+| !A | 0    | 0   | 1  | 0   |
+| A  | 0    | 1   | 1  | 1   |
+
+This K-Map produces 3 groups, which we express as
+
+`Cout = AC + AB + BC`
 
 ## Other Links
 
