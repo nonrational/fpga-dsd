@@ -12,7 +12,7 @@
 
 **/*.cache/
 **/*.runs/
-**/*.hw/
+# **/*.hw/
 **/*.ip_user_files/
 
 a.out
