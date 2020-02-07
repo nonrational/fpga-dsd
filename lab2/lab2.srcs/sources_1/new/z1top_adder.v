@@ -11,8 +11,8 @@ module z1top_adder (
 
   wire test_fail;
 
-  assign LEDS[2] = ~test_fail;
-  assign LEDS[5] = ~test_fail;
+  assign LEDS[2] = test_fail;
+  assign LEDS[5] = test_fail;
 
   structural_adder structural_test_adder (
       .a(adder_operand1),
