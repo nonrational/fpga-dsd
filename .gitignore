@@ -16,3 +16,7 @@
 **/*.ip_user_files/
 
 a.out
+
+/vivado.jou
+/vivado.log
+/vivado_pid*.str
