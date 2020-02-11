@@ -26,9 +26,9 @@ module tone_generator_testbench();
     );
 
     initial begin
-        // `ifdef IVERILOG
-        $dumpfile("tone_generator_testbench.fst");
-        $dumpvars(0,tone_generator_testbench);
+        // `ifdef IVERILOG // is not correctly defined in my environement
+        $dumpfile("tone.vcd");
+        $dumpvars(0, tone_generator_testbench);
         // `endif
 
         tone_to_play = 24'd0;
@@ -37,7 +37,8 @@ module tone_generator_testbench();
         output_enable = 1'b1;
 
         tone_to_play = 24'd500000;
-        #(200 * `MS);
+        #(20 * `MS);
+
         /*
         tone_to_play = 24'd42000;
         #(200 * `MS);

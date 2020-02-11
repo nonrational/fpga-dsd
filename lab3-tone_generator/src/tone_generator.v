@@ -6,16 +6,26 @@ module tone_generator (
     input        volume, // how to affect magnitue of wave?
     output       square_wave_out // assign out to reg value for square wave
 );
-    localparam CLOCK_FREQUENCY = 125_000_000; // 125Mhz
+  localparam CLOCK_FREQUENCY = 125_000_000; // 125Mhz
+  localparam TONE_FREQUENCY = 220;
+  localparam TONE_PERIOD_CLOCK_CYCLES = 568;
 
-    integer counter = 0;
 
-    reg square_wave_state; // is this implemented with a flip/flop?
+  integer counter = 0;
 
-    assign square_wave_out = square_wave_state;
+  reg square_wave_state = 1; // is this implemented with a flip/flop?
 
-    // always (*) begin
-    // ...
-    // ... do clock math to determine if the wave should be high or low, set to square_wave_reg
-    // end
+  assign square_wave_out = square_wave_state;
+
+  always @(posedge clk) begin
+    if (counter == 0)
+      begin
+          square_wave_state = ~square_wave_state;
+          counter = TONE_PERIOD_CLOCK_CYCLES;
+      end
+    else begin
+      if (counter > 0)
+        counter = counter - 1;
+    end
+  end
 endmodule
