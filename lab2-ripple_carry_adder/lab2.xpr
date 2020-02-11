@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="40" Path="/media/sf_src/fpga-dsd/lab2/lab2.xpr">
+<Project Version="7" Minor="40" Path="/media/sf_src/fpga-dsd/lab2-ripple_carry_adder/lab2.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="16b98b47684e46f8aaacfa1f49012257"/>
