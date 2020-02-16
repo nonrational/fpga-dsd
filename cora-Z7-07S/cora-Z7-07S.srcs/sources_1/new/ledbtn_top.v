@@ -20,14 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ledbtn_top(
-  input CLOCK,
+  input clk,
   input [1:0] BUTTONS,
-  output [5:0] LEDS
+
+  output [5:0] LEDS,
+  output wire r_led,
+  output wire g_led
 );
   reg [2:0] state;
   integer debouncer;
 
-  always @(negedge CLOCK)
+  always @(negedge clk)
     if(debouncer == 0 && BUTTONS[0] == 1)
       begin
         state = state + 1;
@@ -38,6 +41,7 @@ module ledbtn_top(
         debouncer = debouncer - 1;
 
   assign LEDS[2:0] = state;
-  assign LEDS[5] = debouncer > 0;
+  assign r_led = debouncer > 0;
+  assign g_led = BUTTONS[1];
 endmodule
 

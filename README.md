@@ -14,6 +14,10 @@
 - Icarus Verilog
 - GTKWave
 
+## Links
+
+- https://www.eevblog.com/forum/fpga/using-vivado-in-tcl-mode/
+
 ## Coursework
 
 - [EECS151 Fall 2019](http://inst.eecs.berkeley.edu/~eecs151/fa19/)
