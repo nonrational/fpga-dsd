@@ -112,16 +112,16 @@ set_property -dict { PACKAGE_PIN W19   IOSTANDARD LVCMOS33 } [get_ports { rx_dat
 #set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports { ck_io29 }]; #IO_L10P_T1_34 Sch=ck_io[29]
 #set_property -dict { PACKAGE_PIN T16   IOSTANDARD LVCMOS33 } [get_ports { ck_io30 }]; #IO_L9P_T1_DQS_34 Sch=ck_io[30]
 #set_property -dict { PACKAGE_PIN U17   IOSTANDARD LVCMOS33 } [get_ports { ck_io31 }]; #IO_L9N_T1_DQS_34 Sch=ck_io[31]
-#set_property -dict { PACKAGE_PIN T17   IOSTANDARD LVCMOS33 } [get_ports { ck_io32 }]; #IO_L20P_T3_34 Sch=ck_io[32]
-#set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { ck_io33 }]; #IO_L20N_T3_34 Sch=ck_io[33]
+set_property -dict { PACKAGE_PIN T17   IOSTANDARD LVCMOS33 } [get_ports { DIP1 }]; #IO_L20P_T3_34 Sch=ck_io[32]
+set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports { DIP0 }]; #IO_L20N_T3_34 Sch=ck_io[33]
 #set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { ck_io34 }]; #IO_L23N_T3_34 Sch=ck_io[34]
 #set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { ck_io35 }]; #IO_L23P_T3_34 Sch=ck_io[35]
 #set_property -dict { PACKAGE_PIN M17   IOSTANDARD LVCMOS33 } [get_ports { ck_io36 }]; #IO_L8P_T1_AD10P_35 Sch=ck_io[36]
 #set_property -dict { PACKAGE_PIN L17   IOSTANDARD LVCMOS33 } [get_ports { ck_io37 }]; #IO_L11N_T1_SRCC_35 Sch=ck_io[37]
 #set_property -dict { PACKAGE_PIN H17   IOSTANDARD LVCMOS33 } [get_ports { ck_io38 }]; #IO_L13N_T2_MRCC_35 Sch=ck_io[38]
-set_property -dict { PACKAGE_PIN H18   IOSTANDARD LVCMOS33 } [get_ports { g_led }]; #IO_L14N_T2_AD4N_SRCC_35 Sch=ck_io[39]
+# set_property -dict { PACKAGE_PIN H18   IOSTANDARD LVCMOS33 } [get_ports { g_led }]; #IO_L14N_T2_AD4N_SRCC_35 Sch=ck_io[39]
 # set_property -dict { PACKAGE_PIN G18   IOSTANDARD LVCMOS33 } [get_ports { YLED[0] }]; #IO_L16N_T2_35 Sch=ck_io[40]              ck_io40
-set_property -dict { PACKAGE_PIN L20   IOSTANDARD LVCMOS33 } [get_ports { r_led }]; #IO_L9N_T1_DQS_AD3N_35 Sch=ck_io[41]      ck_io41
+# set_property -dict { PACKAGE_PIN L20   IOSTANDARD LVCMOS33 } [get_ports { r_led }]; #IO_L9N_T1_DQS_AD3N_35 Sch=ck_io[41]      ck_io41
 
 ## ChipKit SPI
 #set_property -dict { PACKAGE_PIN W15   IOSTANDARD LVCMOS33 } [get_ports { ck_miso }]; #IO_L10N_T1_34 Sch=ck_miso
