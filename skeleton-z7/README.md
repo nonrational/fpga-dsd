@@ -6,3 +6,7 @@
 - `synth`
 - `impl`
 - `program`
+
+## Breadboard
+
+![](skeleton_layout_bb.png)
