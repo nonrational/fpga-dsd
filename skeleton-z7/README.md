@@ -9,4 +9,8 @@
 
 ## Breadboard
 
-![](skeleton_layout_bb.png)
+![](gh-assets/skeleton_layout_bb.png)
+
+![](gh-assets/dipoverhead.jpg)
+
+![](gh-assets/diplights.jpg)
