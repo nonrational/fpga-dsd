@@ -1,0 +1,7 @@
+*.fst
+*.tb
+*.tbi
+*.vpd
+*.txt
+*.vcd
+*.bin
