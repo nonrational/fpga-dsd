@@ -8,5 +8,5 @@ module skel_top (
     output [5:0] LEDS
 );
 
-    assign LEDS = DIP;
+    assign LEDS = ~DIP;
 endmodule
