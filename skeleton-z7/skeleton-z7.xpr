@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="40" Path="/media/sf_src/fpga-dsd/scratch-cora/scratch.xpr">
+<Project Version="7" Minor="40" Path="/media/sf_src/fpga-dsd/skeleton-z7/skeleton-z7.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="dca52fba18b54fcf9799b0b616c8d1d8"/>
