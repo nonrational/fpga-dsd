@@ -8,6 +8,6 @@ module bbio_top(
 
   output [5:0] LEDS
 );
-  assign LEDS = DIP0 + DIP1;
+  assign LEDS[1:0] = {1'b0,DIP0} + {1'b0,DIP1};
 endmodule
 
