@@ -7,5 +7,4 @@ module tone_top (
 );
     // TODO(you): Your code here. Remove the following lines once you add your implementation.
     assign LEDS[5:0] = 6'b111111;
-    assign aud_sd = 0;
 endmodule

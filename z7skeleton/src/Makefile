@@ -1,4 +1,4 @@
-build:
+iverilog-build:
 	rm -f a.out
 	rm -f tone_generator_testbench.fst
 	rm -f tone_generator_testbench.bin

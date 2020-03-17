@@ -1,12 +1,12 @@
 SHELL                   := $(shell which bash) -o pipefail
 ABS_TOP                 := $(shell pwd)
+SRC_DIR                 := $(shell pwd)/src
 VIVADO                  ?= vivado
 VIVADO_OPTS             ?= -nolog -nojournal -mode batch
-FPGA_PART               ?= xc7z020clg400-3
-RTL                     += $(shell find $(ABS_TOP)/src -type f -name "*.v")
-CONSTRAINTS             += $(shell find $(ABS_TOP)/src -type f -name "*.xdc")
-TOP                     ?= bbio_top
-SIM_RTL                 := $(shell find $(ABS_TOP)/sim -type f -name "*.v"))
+FPGA_PART               ?= xc7z007sclg400-1
+RTL                     += $(shell find $(SRC_DIR) -type f -name "*.v")
+CONSTRAINTS             += $(shell find $(SRC_DIR) -type f -name "*.xdc")
+TOP                     ?= tone_top
 IVERILOG                := iverilog
 IVERILOG_OPTS           := -D IVERILOG=1
 VVP                     := vvp
@@ -50,7 +50,7 @@ vivado: build
 	cd build && nohup $(VIVADO) </dev/null >/dev/null 2>&1 &
 
 lint:
-	verilator --lint-only --top-module $(TOP) $(RTL)
+	verilator -I$(SRC_DIR) --lint-only --top-module $(TOP) $(RTL)
 
 sim_build/compile_simlib/synopsys_sim.setup:
 	mkdir -p sim_build/compile_simlib
