@@ -6,18 +6,19 @@ VIVADO_OPTS             ?= -nolog -nojournal -mode batch
 FPGA_PART               ?= xc7z007sclg400-1
 RTL                     += $(shell find $(SRC_DIR) -type f -name "*.v")
 CONSTRAINTS             += $(shell find $(SRC_DIR) -type f -name "*.xdc")
-TOP                     ?= tone_top
+TOP                     ?= skel_top
 IVERILOG                := iverilog
 IVERILOG_OPTS           := -D IVERILOG=1
 VVP                     := vvp
+MAX_THREADS         	:= 2
 
 build/target.tcl: $(RTL) $(CONSTRAINTS)
 	mkdir -p build
-	echo "set ABS_TOP                        $(ABS_TOP)"    >> $@
-	echo "set TOP                            $(TOP)"    >> $@
-	echo "set FPGA_PART                      $(FPGA_PART)"  >> $@
-	echo "set_param general.maxThreads       4"    >> $@
-	echo "set_param general.maxBackupLogs    0"    >> $@
+	echo "set ABS_TOP                        $(ABS_TOP)"    	>> $@
+	echo "set TOP                            $(TOP)"    		>> $@
+	echo "set FPGA_PART                      $(FPGA_PART)"  	>> $@
+	echo "set_param general.maxThreads       $(MAX_THREADS)"    >> $@
+	echo "set_param general.maxBackupLogs    0"    				>> $@
 	echo -n "set RTL { " >> $@
 	FLIST="$(RTL)"; for f in $$FLIST; do echo -n "$$f " ; done >> $@
 	echo "}" >> $@
@@ -65,4 +66,3 @@ clean:
 	sim/*.tbi sim/*.fst sim/*.jou sim/*.log sim/*.out
 
 .PHONY: setup synth impl program program-force vivado all clean %.tb
-.PRECIOUS: sim/%.tb sim/%.tbi
