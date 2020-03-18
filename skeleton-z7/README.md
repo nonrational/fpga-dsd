@@ -9,8 +9,9 @@
 
 ## Breadboard
 
-![](gh-assets/skeleton_layout_bb.png)
+| <img src=gh-assets/skeleton_layout_bb.png width=1024> | <img src=gh-assets/dipoverhead.jpg width=1024> |
+|-------------------------------------------------------|------------------------------------------------|
 
-![](gh-assets/dipoverhead.jpg)
+<img src=gh-assets/diplights.jpg width=512/>
+<img src=gh-assets/ip_integrator.png width=512/>
 
-![](gh-assets/diplights.jpg)
