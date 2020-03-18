@@ -32,4 +32,4 @@
 
 ## macOS Development
 
-![](assets/vivando-on-virtualbox-with-xforwarding-and-shared-folders.png)
+![](gh-assets/vivando-on-virtualbox-with-xforwarding-and-shared-folders.png)
