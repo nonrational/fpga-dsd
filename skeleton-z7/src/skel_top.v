@@ -14,9 +14,9 @@ module skel_top (
     output wire rx_sclk,
     input  wire rx_data,
 
-    input [5:0] DIP,
+    input wire [5:0] DIP,
 
-    output [5:0] LEDS
+    output wire [5:0] LEDS
 );
     wire axis_clk;
 
