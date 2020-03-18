@@ -51,7 +51,7 @@ vivado: build
 	cd build && nohup $(VIVADO) </dev/null >/dev/null 2>&1 &
 
 lint:
-	verilator -I$(SRC_DIR) --lint-only --top-module $(TOP) $(RTL)
+	verilator -I$(SRC_DIR) --relative-includes --lint-only --top-module $(TOP) $(RTL)
 
 sim_build/compile_simlib/synopsys_sim.setup:
 	mkdir -p sim_build/compile_simlib
