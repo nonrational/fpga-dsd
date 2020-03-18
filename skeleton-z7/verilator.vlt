@@ -14,18 +14,30 @@
 // |_____|___|_| \_| |_|   |____/ |_|  \___/|____/____/
 //
 
+/*
+ * https://www.veripool.org/boards/2/topics/2241-Verilator-use-verilator-as-a-linter-per-single-file?r=2242-Verilator-RE-use-verilator-as-a-linter-per-single-file#message-2242
+ *
+ * > Unfortunately Verilog as a language can't in the general case be parsed without include files. It also can't be linted without
+ * > elaboration, which requires the whole design. So this isn't and won't be supported in Verilator. Sorry.
+ *
+ * > If you're trying to avoid this because you're writing something like a wrapper module and don't want to lint what is below, you may want
+ * > to make a "null module", which has the same I/O as your below module but none of the guts. verilog-mode makes this easy.
+ */
+
 `celldefine
 module IBUF (O, I);
     output O;
     input  I;
 endmodule
 `endcelldefine
+
 `celldefine
 module BUFG (O, I);
     output O;
     input  I;
 endmodule
 `endcelldefine
+
 `celldefine
 module MMCME2_ADV # (
   `ifdef XIL_TIMING
