@@ -4,7 +4,7 @@ SRC_DIR                 := $(shell pwd)/src
 VIVADO                  ?= vivado
 VIVADO_OPTS             ?= -nolog -nojournal -mode batch
 FPGA_PART               ?= xc7z007sclg400-1
-RTL                     += $(shell find $(SRC_DIR) -type f -name "*.v")
+RTL                     += $(shell find $(SRC_DIR) -type f -name "*.v" -not -name "*sim*" -not -name "*stub*")
 CONSTRAINTS             += $(shell find $(SRC_DIR) -type f -name "*.xdc")
 TOP                     ?= skel_top
 IVERILOG                := iverilog
@@ -51,7 +51,7 @@ vivado: build
 	cd build && nohup $(VIVADO) </dev/null >/dev/null 2>&1 &
 
 lint:
-	verilator -I$(SRC_DIR) --lint-only --top-module $(TOP) $(RTL)
+	verilator -I$(SRC_DIR) --bbox-unsup --lint-only --top-module $(TOP) verilator_config.vlt $(RTL)
 
 sim_build/compile_simlib/synopsys_sim.setup:
 	mkdir -p sim_build/compile_simlib
