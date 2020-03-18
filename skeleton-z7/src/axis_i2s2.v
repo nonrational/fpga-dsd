@@ -35,14 +35,14 @@ module axis_i2s2 (
     input  wire        rx_axis_m_ready,
     output reg         rx_axis_m_last = 1'b0,
 
-    output wire tx_mclk, // JA[0]
-    output wire tx_lrck, // JA[1]
-    output wire tx_sclk, // JA[2]
+    output wire tx_mclk,  // JA[0]
+    output wire tx_lrck,  // JA[1]
+    output wire tx_sclk,  // JA[2]
     output reg  tx_sdout, // JA[3]
-    output wire rx_mclk, // JA[4]
-    output wire rx_lrck, // JA[5]
-    output wire rx_sclk, // JA[6]
-    input  wire rx_sdin // JA[7]
+    output wire rx_mclk,  // JA[4]
+    output wire rx_lrck,  // JA[5]
+    output wire rx_sclk,  // JA[6]
+    input  wire rx_sdin   // JA[7]
 );
     reg [8:0] count = 9'd0;
     localparam EOF_COUNT = 9'd455; // end of full I2S frame

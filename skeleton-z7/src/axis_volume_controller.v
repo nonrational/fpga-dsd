@@ -42,7 +42,6 @@ module axis_volume_controller #(
 
     reg [SWITCH_WIDTH-1:0] sw_sync_r [2:0];
     wire [SWITCH_WIDTH-1:0] sw_sync = sw_sync_r[2];
-//    wire [SWITCH_WIDTH:0] m = {1'b0, sw_sync} + 1;
     reg [MULTIPLIER_WIDTH:0] multiplier = 'b0; // range of 0x00:0x10 for width=4
 
     wire m_select = m_axis_last;
