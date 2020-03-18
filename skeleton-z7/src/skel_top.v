@@ -1,9 +1,8 @@
 `timescale 1ns/1ns
 
 module skel_top (
-    input wire clk,
-    input wire sw,    // btn0
-    input wire reset, // btn1
+    input wire       clk,
+    input wire       reset, // btn1
 
     output wire tx_mclk,
     output wire tx_lrck,
@@ -14,12 +13,13 @@ module skel_top (
     output wire rx_sclk,
     input  wire rx_data,
 
-    input wire [5:0] DIP,
+    input wire [7:0] DIP,
 
     output wire [5:0] LEDS
 );
     wire axis_clk;
 
+    wire [1:0] sw;
     wire [23:0] axis_tx_data;
     wire axis_tx_valid;
     wire axis_tx_ready;
@@ -31,6 +31,9 @@ module skel_top (
     wire axis_rx_last;
 
 	wire resetn = (reset == 1) ? 1'b0 : 1'b1;
+
+    assign LEDS = ~DIP[5:0];
+    assign sw = DIP[7:6];
 
     clk_wiz_0 m_clk (
         .clk_in1(clk),
@@ -62,7 +65,7 @@ module skel_top (
     );
 
     axis_volume_controller #(
-		.SWITCH_WIDTH(1),
+		.SWITCH_WIDTH(2),
 		.DATA_WIDTH(24)
 	) m_vc (
         .clk(axis_clk),
@@ -78,6 +81,4 @@ module skel_top (
         .m_axis_ready(axis_tx_ready),
         .m_axis_last(axis_tx_last)
     );
-
-    assign LEDS = ~DIP;
 endmodule
