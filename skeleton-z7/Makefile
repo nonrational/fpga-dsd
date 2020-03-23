@@ -53,12 +53,6 @@ vivado: build
 lint:
 	verilator -I$(SRC_DIR) --bbox-unsup --lint-only --top-module $(TOP) verilator_config.vlt $(RTL)
 
-sim_build/compile_simlib/synopsys_sim.setup:
-	mkdir -p sim_build/compile_simlib
-	cd build/sim_build/compile_simlib && $(VIVADO) $(VIVADO_OPTS) -source $(ABS_TOP)/scripts/compile_simlib.tcl
-
-compile_simlib: sim_build/compile_simlib/synopsys_sim.setup
-
 clean:
 	rm -rf ./build
 
