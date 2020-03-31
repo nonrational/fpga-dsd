@@ -58,5 +58,10 @@ sudo-prog: $(PROJ).bin
 clean:
 	rm -f $(PROJ).blif $(PROJ).asc $(PROJ).rpt $(PROJ).bin
 
+hardware-setup:
+	apio drivers --serial-enable
+	apio system --lsserial
+	tinyprog --update-bootloader
+
 .SECONDARY:
 .PHONY: all prog clean
