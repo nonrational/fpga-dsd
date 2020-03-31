@@ -8,7 +8,8 @@
 1. Download BSP from [GitHub](https://github.com/Digilent/Petalinux-Cora-Z7-07S/releases)
 1. Mount SD USB on VirtualBox Ubuntu
 1. Run `gparted`
-    1. ![](https://i.imgur.com/rM1JOgR.png)
+    
+    <img src=https://i.imgur.com/rM1JOgR.png width=800>
 1.  Mount SD Partitions
     ```bash
     sudo mkdir /mnt/SDBOOT /mnt/SDLINUX
@@ -64,4 +65,4 @@
     9. Optionally attach the Cora Z7 to a network using ethernet.
     10. Press the `SRST` button to restart the Cora Z7. You should see the boot process at the terminal and eventually a root prompt.
 
-![](../gh-assets/coraz7_petalinux.jpeg)
+<img src=/gh-assets/cora_petalinux.jpeg width=800>
