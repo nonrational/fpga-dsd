@@ -18,18 +18,23 @@
 
     sudo chown -R norton:norton /mnt/SD*
     ```
-1. Download [Petalinux Tools Installer](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-v2019.2-final-installer.run)
-1. Install Petalinux Tools
+1. Download [Petalinux Tools Installer](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-v2019.2-final-installer.run) & Install
     ```bash
     mkdir -p /opt/pkg/petalinux/2019.2
     sudo mkdir -p /opt/pkg/petalinux/2019.2
     sudo chown -R norton:norton /opt/pkg/
 
-    sudo apt-get install -y python gawk gcc git make net-tools libncurses5-dev tftpd zlib1g:i386 libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo zlib1g-dev gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip
+    sudo apt-get install -y python gawk gcc git make net-tools libncurses5-dev \
+         tftpd zlib1g:i386 libssl-dev flex bison libselinux1 gnupg wget \
+         diffstat\ chrpath socat xterm autoconf libtool tar unzip texinfo \
+         zlib1g-dev gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev \
+         screen pax gzip
 
     time ./petalinux-v2019.2-final-installer.run /opt/pkg/petalinux/2019.2/
 
+    # change /bin/sh -> /bin/bash
     sudo dpkg-reconfigure dash
+
     echo 'source /opt/pkg/petalinux/2019.2/settings.sh' >> ~/.bashrc
 
     petalinux-create -t project -s ./Petalinux-Cora-Z7-07S-2017.4-1.bsp
@@ -41,26 +46,22 @@
     echo 'ethaddr=CO:PY:RE:AL:MA:CA' > /mnt/SDBOOT/uEnv.txt
     ```
 1. Continue to follow directions from the [README](https://github.com/Digilent/Petalinux-Cora-Z7-07S#run-the-pre-built-image-from-sd)
+
     4. Eject the SD card from your computer and insert it into the Cora Z7.
     5. Short the MODE jumper (JP2).
     6. Attach a power source and select it with JP3 (note that using USB for power may not provide sufficient current)
     7. If not already done to provide power, attach a microUSB cable between the computer and the Cora Z7
-    8. Open a terminal program (such as minicom) and connect to the Cora Z7 with 115200/8/N/1 settings (and no Hardware flow control). The Cora Z7 UART typically shows up as /dev/ttyUSB1
+    8. Open a terminal program (such as `minicom`) and connect to the Cora Z7 with 115200/8/N/1 settings (and no Hardware flow control). The Cora Z7 UART typically shows up as /dev/ttyUSB1
+       ```bash
+       sudo apt-get install minicom
+       # find the name of the device
+       dmesg
+       # minicom requires root
+       sudo minicom -s
+       # configure device to select /dev/ttyUSB1
+       # save and drop back to root shell
+       ```
     9. Optionally attach the Cora Z7 to a network using ethernet.
-    10. Press the SRST button to restart the Cora Z7. You should see the boot process at the terminal and eventually a root prompt.
+    10. Press the `SRST` button to restart the Cora Z7. You should see the boot process at the terminal and eventually a root prompt.
 
-
-```bash
-
-sudo apt-get install minicom
-
-# find the name of the device
-dmesg
-
-# minicom requires root
-sudo minicom -s
-
-# configure device to select /dev/ttyUSB1
-
-# save and drop back to root shell
-```
+![](../gh-assets/coraz7_petalinux.jpeg)
