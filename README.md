@@ -20,7 +20,6 @@
 - http://www.clifford.at/yosys/cmd_synth_xilinx.html
 - https://symbiflow.github.io/
 - https://github.com/dalance/sv-parser
-- https://github.com/dalance/sv-parser
 - https://github.com/google/verible
 - https://en.wikipedia.org/wiki/Plasma_ashing
 - https://en.wikipedia.org/wiki/Electromagnetic_spectrum
