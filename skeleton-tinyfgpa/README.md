@@ -2,10 +2,12 @@
 
 - https://tinyfpga.com/bx/guide.html
 
+# Breadboard Setup
 
-# Setup
+<img alt="Soldering Header Pins" src=../gh-assets/tinyfpga_solder.jpeg width=200>
 
+# Toolchain Setup
 
-## Header Pins
-
-<img src=../gh-assets/tinyfpga_solder.jpeg width=800>
+```bash
+./install_apio.sh
+```
