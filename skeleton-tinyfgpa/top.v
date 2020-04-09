@@ -3,23 +3,47 @@ module top (
     input CLK,    // 16MHz clock
     output LED,   // User/boot LED next to power LED
     output PIN_13,
-    output USBPU  // USB pull-up resistor
+    output USBPU,  // USB pull-up resistor
+    output [26:0] counter
 );
     // drive USB pull-up resistor to '0' to disable USB
     assign USBPU = 0;
 
+    //  _______ _    _ _
+    // |__ /_  ) |__(_) |_
+    //  |_ \/ /| '_ \ |  _|
+    // |___/___|_.__/_|\__|
+    //
     // keep track of time and location in blink_pattern
-    reg [25:0] blink_counter;
+    reg [26:0] blink_counter;
+    assign counter = blink_counter;
 
-    // pattern that will be flashed over the LED over time
-    wire [31:0] blink_pattern = 32'b101010001110111011100010101;
+    initial
+        begin
+            blink_counter = 27'b000000100000000000000000000;
+        end
 
-    // increment the blink_counter every clock
-    always @(posedge CLK) begin
+    wire [34:0] blink_pattern = 35'b10101000_11101110111000_10101000;
+    always @(posedge CLK)
+    begin
         blink_counter <= blink_counter + 1;
     end
 
-    // light up the LED according to the pattern
-    assign LED = blink_pattern[blink_counter[25:21]];
-    assign PIN_13 = ~blink_pattern[blink_counter[25:21]];
+    wire [5:0] index;
+    // 6-bit index
+    assign index = blink_counter[26:21];
+    // index into pattern
+    assign PIN_13 = blink_pattern[index];
+    // blink onboard LED every cycle
+    assign LED = index == 0;
+
+    //                   _
+    //  _ _ __ _ _ _  __| |___ _ __
+    // | '_/ _` | ' \/ _` / _ \ '  \
+    // |_| \__,_|_||_\__,_\___/_|_|_|
+    //
+
+    // reg loadseed_i;
+    // assign LED = rng(CLK,PIN_13,)
+
 endmodule

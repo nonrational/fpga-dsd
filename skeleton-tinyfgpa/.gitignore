@@ -1,6 +1,7 @@
 *.dblite
 *.blif
-
+*.out
 hardware.asc
 hardware.bin
 hardware.json
+.apio-drivers-serial-enabled
