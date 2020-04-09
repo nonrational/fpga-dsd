@@ -1,4 +1,6 @@
 *.dblite
 *.blif
-*.asc
-*.bin
+
+hardware.asc
+hardware.bin
+hardware.json

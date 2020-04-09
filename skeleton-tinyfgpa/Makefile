@@ -17,13 +17,13 @@
 all: lint build
 
 program: all
-	apio upload
+	apio upload -v
 
 build:
-	apio build
+	apio build -v
 
 clean:
-	apio clean
+	apio clean -v
 
 lint:
 	apio lint
