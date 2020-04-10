@@ -1,48 +1,53 @@
 `timescale 1ns/1ns
 
-`define STEP 10000000
+`define STEP 33554424000
 
 module top_tb ();
   reg clock;
   initial clock = 0;
-  always #4 clock <= ~clock;
+  always #1 clock <= ~clock;
+
+  reg [31:0] blink_pattern = 32'b01010101010101001111111011111111;
+
+  wire [4:0] index;
+  assign index = blink_counter[25:21];
 
   wire gr_led;
-  wire usb;
-  wire onboard;
-  wire [26:0] blink_counter;
 
-  reg [34:0] blink_pattern = 35'b10101000_11101110111000_10101000;
+  wire [25:0] blink_counter;
 
-  top blinky (
+  lookup_blinker_32 blinky (
     .CLK(clock),
-    .LED(onboard),
-    .PIN_13(gr_led),
-    .USBPU(usb),
-    .counter(blink_counter)
+    .blink_pattern(blink_pattern),
+
+    .LED(gr_led),
+    .blink_counter(blink_counter)
   );
 
-  wire last_gr_led;
+  // initial $monitor("@%t %b", $time, $realtime, gr_led);
 
-  initial begin
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $display("[%t] %b", $time, blink_counter);
-    #(`STEP)
-    $fflush();
-    $finish;
+  realtime flipon;
+  initial flipon = 0;
+
+  always begin
+    @(gr_led)      // wait for sig to goto 0
+      begin
+        $display("[%t] @%b -> %b", $realtime - flipon, index, gr_led);
+        $fflush();
+        flipon = $realtime;
+      end
+  end
+
+  always begin
+    #500 begin
+      $fflush();
+
+      if (index == 0)
+        begin
+        $display("[%t] @%b -> %b", $realtime - flipon, index, gr_led);
+        $fflush();
+        $finish();
+        end
+    end
   end
 endmodule

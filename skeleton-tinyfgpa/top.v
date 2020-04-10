@@ -1,49 +1,61 @@
 // look in pins.pcf for all the pin names on the TinyFPGA BX board
 module top (
-    input CLK,    // 16MHz clock
-    output LED,   // User/boot LED next to power LED
-    output PIN_13,
+    input CLK,     // 16MHz clock
+
+    output LED,    // User/boot LED next to power LED
     output USBPU,  // USB pull-up resistor
-    output [26:0] counter
+
+    output PIN_13
 );
     // drive USB pull-up resistor to '0' to disable USB
     assign USBPU = 0;
+    assign LED = 0;
 
-    //  _______ _    _ _
-    // |__ /_  ) |__(_) |_
-    //  |_ \/ /| '_ \ |  _|
-    // |___/___|_.__/_|\__|
-    //
-    // keep track of time and location in blink_pattern
-    reg [26:0] blink_counter;
-    assign counter = blink_counter;
+    lookup_blinker_32 SOS (
+        .CLK(CLK),
+        .blink_pattern(32'b10101000_11101110111000_10101000_00),
+        .LED(PIN_13),
+        .blink_counter()
+    );
+endmodule
 
-    initial
-        begin
-            blink_counter = 27'b000000100000000000000000000;
-        end
-
-    wire [34:0] blink_pattern = 35'b10101000_11101110111000_10101000;
+module lookup_blinker_32 (
+    input CLK,
+    input [31:0] blink_pattern,
+    output reg [25:0] blink_counter,
+    output LED
+);
     always @(posedge CLK)
     begin
         blink_counter <= blink_counter + 1;
     end
 
-    wire [5:0] index;
-    // 6-bit index
-    assign index = blink_counter[26:21];
-    // index into pattern
-    assign PIN_13 = blink_pattern[index];
-    // blink onboard LED every cycle
-    assign LED = index == 0;
+    initial
+        begin
+            blink_counter = 26'b00001000000000000000000000;
+        end
 
-    //                   _
-    //  _ _ __ _ _ _  __| |___ _ __
-    // | '_/ _` | ' \/ _` / _ \ '  \
-    // |_| \__,_|_||_\__,_\___/_|_|_|
-    //
-
-    // reg loadseed_i;
-    // assign LED = rng(CLK,PIN_13,)
-
+    // "Bit extraction of var[31:0] requires 5 bit index, not 6 bits."
+    wire [4:0] index;
+    assign index = blink_counter[25:21];
+    assign LED = blink_pattern[index];
 endmodule
+
+// module lookup_blinker
+//     #(parameter WIDTH=32)
+//     (
+//         input CLK,
+//         input [WIDTH-1:0] blink_pattern,
+//         output LED,
+//         output [25:0] blink_counter
+//     );
+
+//     initial blink_counter = 26'b00001000000000000000000000;
+//     always @(posedge CLK)
+//     begin
+//         blink_counter <= blink_counter + 1;
+//     end
+//     wire [4:0] index;
+//     assign index = blink_counter[25:21];
+//     assign LED = blink_pattern[index];
+// endmodule
