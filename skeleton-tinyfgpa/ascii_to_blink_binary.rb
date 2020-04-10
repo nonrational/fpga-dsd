@@ -32,13 +32,13 @@ class Blinky
   }
 
   def self.encode(msg)
-    message = msg + ' '
-    chary = message.split('').map { |c| @alpha[c] }
+    message = msg.split('') + ['']
+    chary = message.map { |c| @alpha[c] }
     chary.join('000_').delete_suffix('_')
   end
 end
 
-stream = Blinky.encode('SOS')
+stream = Blinky.encode('CODITO ERGO SUM')
 bits = stream.gsub(/_/, '')
 
 puts "blink_pattern = #{bits.length}'b#{stream}"
