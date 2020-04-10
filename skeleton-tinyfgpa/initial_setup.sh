@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 brew bundle
+
+# enable gtkwave at the commandline
 cpan install Switch
 perl -V:'installsitelib'
 
