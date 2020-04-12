@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 // look in pins.pcf for all the pin names on the TinyFPGA BX board
 module top (
     input CLK,     // 16MHz clock
@@ -18,9 +9,8 @@ module top (
 );
     // drive USB pull-up resistor to '0' to disable USB
     assign USBPU = 0;
-    assign LED = 0;
 
-    tickspeed_blinker SOS (
+    tickspeed_blinker nonrational (
         .CLK(CLK),
         .blink_pattern(102'b101110101000_10111000_11101000_11101110111000_101000_111000_10111000_1011101000_11101000_11101110111000_11101000),
 
