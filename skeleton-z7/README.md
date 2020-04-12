@@ -1,5 +1,9 @@
 # zynq-7000 skeleton project
 
+## Links
+
+- http://adiuvoengineering.com/microzed-chronicles/
+
 ## Functionality
 
 - [x] `input wire [5:0] DIP` controls `output wire [5:0] LED`

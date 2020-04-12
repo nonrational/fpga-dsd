@@ -7,3 +7,6 @@
 [submodule "vivado-boards"]
 	path = vivado-boards
 	url = https://github.com/Digilent/vivado-boards
+[submodule "TinyFPGA-BX"]
+	path = TinyFPGA-BX
+	url = https://github.com/tinyfpga/TinyFPGA-BX

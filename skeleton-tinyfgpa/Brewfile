@@ -1,0 +1,2 @@
+cask 'gtkwave'
+brew 'pyenv'
