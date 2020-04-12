@@ -15,6 +15,7 @@ module top_tb ();
     .blink_pattern(blink_pattern),
 
     .LED(gr_led),
+    .START(),
     .blink_index(blink_index)
   );
 
