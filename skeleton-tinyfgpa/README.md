@@ -11,7 +11,7 @@ Breadboard connection requires soldering 2x 14-pin headers.
 
 ## macOS Setup
 
-See [`initial_setup.h`](initial_setup.h)
+See [`initial_setup.sh`](initial_setup.sh)
 
 ## Usage
 

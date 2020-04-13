@@ -1,3 +1,4 @@
+# needed for `source`
 SHELL := /bin/bash
 
 all: lint build
@@ -27,5 +28,4 @@ verify:
 	apio verify
 
 
-.SECONDARY:
-.PHONY: all prog clean
+.PHONY: all build clean lint program test
