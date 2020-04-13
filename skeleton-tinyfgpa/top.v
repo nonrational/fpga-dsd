@@ -9,53 +9,50 @@ module top (
 );
     // drive USB pull-up resistor to '0' to disable USB
     assign USBPU = 0;
-    assign LED = 0;
 
-    lookup_blinker_32 SOS (
+    tickspeed_blinker nonrational (
         .CLK(CLK),
-        .blink_pattern(32'b10101000_11101110111000_10101000_00),
+        .blink_pattern(102'b000101011101_00011101_00010111_00011101110111_000101_000111_00011101_0001011101_00010111_00011101110111_00010111),
+
         .LED(PIN_13),
-        .blink_counter()
+        .START(LED),
+        .blink_index()
     );
 endmodule
 
-module lookup_blinker_32 (
+module tickspeed_blinker
+    #(
+        parameter TICK_RATE='d5_000_000,
+        parameter MESSAGE_WIDTH=102
+     )
+(
     input CLK,
-    input [31:0] blink_pattern,
-    output reg [25:0] blink_counter,
-    output LED
+    input [MESSAGE_WIDTH-1:0] blink_pattern,
+
+    output LED,
+    output START,
+    output reg [$clog2(MESSAGE_WIDTH)-1:0] blink_index
 );
+
+    reg [31:0] tick;
+
+    assign START = blink_index == 0;
+
     always @(posedge CLK)
     begin
-        blink_counter <= blink_counter + 1;
+        tick = tick + 1;
+        if (tick >= TICK_RATE)
+        begin
+            blink_index <= blink_index + 1;
+            tick = 0;
+        end
     end
 
     initial
         begin
-            blink_counter = 26'b00001000000000000000000000;
+            blink_index = 'b1;
+            tick = 0;
         end
 
-    // "Bit extraction of var[31:0] requires 5 bit index, not 6 bits."
-    wire [4:0] index;
-    assign index = blink_counter[25:21];
-    assign LED = blink_pattern[index];
+    assign LED = blink_pattern[blink_index];
 endmodule
-
-// module lookup_blinker
-//     #(parameter WIDTH=32)
-//     (
-//         input CLK,
-//         input [WIDTH-1:0] blink_pattern,
-//         output LED,
-//         output [25:0] blink_counter
-//     );
-
-//     initial blink_counter = 26'b00001000000000000000000000;
-//     always @(posedge CLK)
-//     begin
-//         blink_counter <= blink_counter + 1;
-//     end
-//     wire [4:0] index;
-//     assign index = blink_counter[25:21];
-//     assign LED = blink_pattern[index];
-// endmodule

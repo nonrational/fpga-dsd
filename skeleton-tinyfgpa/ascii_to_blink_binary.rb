@@ -32,13 +32,16 @@ class Blinky
   }
 
   def self.encode(msg)
-    message = msg.split('').reverse + ['']
-    chary = message.map { |c| @alpha[c] }
-    chary.join('000_').delete_suffix('_')
+    message = msg.split('') + ['']
+
+    message.map { |c| @alpha[c] }  # map chars to morse
+           .join('000_')           # join with pauses
+           .delete_suffix('_')     # join leaves us with an extra _
+           .reverse                # read LSB -> MSB
   end
 end
 
 stream = Blinky.encode('NONRATIONAL')
-bits = stream.gsub(/_/, '')
+width = stream.gsub(/_/, '').length
 
-puts "blink_pattern = #{bits.length}'b#{stream}"
+puts "#{width}'b#{stream}"

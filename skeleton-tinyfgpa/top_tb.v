@@ -1,52 +1,47 @@
 `timescale 1ns/1ns
 
-`define STEP 33554424000
-
 module top_tb ();
   reg clock;
   initial clock = 0;
-  always #1 clock <= ~clock;
-
-  reg [31:0] blink_pattern = 32'b01010101010101001111111011111111;
-
-  wire [4:0] index;
-  assign index = blink_counter[25:21];
+  always #4 clock <= ~clock;
 
   wire gr_led;
 
-  wire [25:0] blink_counter;
+  reg [31:0] blink_pattern = 32'b01010101010101001111111111111111;
+  wire [4:0] blink_index;
 
-  lookup_blinker_32 blinky (
+  tickspeed_blinker #(.TICK_RATE(100), .MESSAGE_WIDTH(32)) blinky (
     .CLK(clock),
     .blink_pattern(blink_pattern),
 
     .LED(gr_led),
-    .blink_counter(blink_counter)
+    .START(),
+    .blink_index(blink_index)
   );
 
-  // initial $monitor("@%t %b", $time, $realtime, gr_led);
+  realtime last_flip_at;
+  initial last_flip_at = 0;
 
-  realtime flipon;
-  initial flipon = 0;
+  // initial $monitor("[%t] %b", $time, blink_index);
 
   always begin
-    @(gr_led)      // wait for sig to goto 0
+    @(gr_led) // on every flip, print how long since the last flip
       begin
-        $display("[%t] @%b -> %b", $realtime - flipon, index, gr_led);
+        $display("[%t] gr_led:%b", $realtime - last_flip_at, gr_led);
         $fflush();
-        flipon = $realtime;
+        last_flip_at = $realtime;
       end
   end
 
   always begin
-    #500 begin
+    #1 begin
       $fflush();
 
-      if (index == 0)
+      if (blink_index == 0)
         begin
-        $display("[%t] @%b -> %b", $realtime - flipon, index, gr_led);
-        $fflush();
-        $finish();
+          $display("[%t] gr_led:%b", $realtime - last_flip_at, gr_led);
+          $fflush();
+          $finish();
         end
     end
   end
