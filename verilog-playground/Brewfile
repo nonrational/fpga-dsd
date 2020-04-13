@@ -1,4 +1,0 @@
-brew 'icarus-verilog'
-
-cask 'xquartz'
-cask 'gtkwave'
