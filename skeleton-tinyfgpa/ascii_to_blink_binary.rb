@@ -28,7 +28,7 @@ class Blinky
     'X' => '11101010111',
     'Y' => '1110101110111',
     'Z' => '11101110101',
-    ' ' => '00000'
+    ' ' => '00'
   }
 
   def self.encode(msg)
@@ -41,7 +41,7 @@ class Blinky
   end
 end
 
-stream = Blinky.encode('A B C D E')
+stream = Blinky.encode('IT IS ALIVE')
 width = stream.gsub(/_/, '').length
 
 puts "#{width}'b#{stream}"
