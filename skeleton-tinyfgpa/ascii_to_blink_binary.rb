@@ -41,7 +41,7 @@ class Blinky
   end
 end
 
-stream = Blinky.encode('NONRATIONAL')
+stream = Blinky.encode('A B C D E')
 width = stream.gsub(/_/, '').length
 
 puts "#{width}'b#{stream}"

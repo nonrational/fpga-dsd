@@ -27,19 +27,19 @@ module top_tb ();
   always begin
     @(gr_led) // on every flip, print how long since the last flip
       begin
-        $display("[%t] gr_led:%b", $realtime - last_flip_at, gr_led);
+        $display("[%t] elapsed:%t gr_led:%b", $realtime, $realtime - last_flip_at, gr_led);
         $fflush();
         last_flip_at = $realtime;
       end
   end
 
   always begin
-    #1 begin
+    #500 begin
       $fflush();
 
-      if (blink_index == 0)
+      if (blink_index == 0 && $realtime > 500000)
         begin
-          $display("[%t] gr_led:%b", $realtime - last_flip_at, gr_led);
+          $display("[%t] elapsed:%t gr_led:%b", $realtime, $realtime - last_flip_at, gr_led);
           $fflush();
           $finish();
         end

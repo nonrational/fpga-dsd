@@ -10,9 +10,9 @@ module top (
     // drive USB pull-up resistor to '0' to disable USB
     assign USBPU = 0;
 
-    tickspeed_blinker nonrational (
+    tickspeed_blinker #(.MESSAGE_WIDTH(84)) tsb (
         .CLK(CLK),
-        .blink_pattern(102'b000101011101_00011101_00010111_00011101110111_000101_000111_00011101_0001011101_00010111_00011101110111_00010111),
+        .blink_pattern(84'b0001_000000000_0001010111_000000000_00010111010111_000000000_000101010111_000000000_00011101),
 
         .LED(PIN_13),
         .START(LED),
@@ -22,18 +22,17 @@ endmodule
 
 module tickspeed_blinker
     #(
-        parameter TICK_RATE='d5_000_000,
-        parameter MESSAGE_WIDTH=102
+        parameter TICK_RATE='d2500000,
+        parameter MESSAGE_WIDTH=32
      )
 (
     input CLK,
     input [MESSAGE_WIDTH-1:0] blink_pattern,
 
-    output LED,
-    output START,
+    output LED,   // blinks the message
+    output START, // blinks at the start of the message
     output reg [$clog2(MESSAGE_WIDTH)-1:0] blink_index
 );
-
     reg [31:0] tick;
 
     assign START = blink_index == 0;
@@ -50,7 +49,7 @@ module tickspeed_blinker
 
     initial
         begin
-            blink_index = 'b1;
+            blink_index = 0;
             tick = 0;
         end
 
